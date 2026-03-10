@@ -1,0 +1,6 @@
+product_id,component_id,component_name,quantity
+CAR100,ENG001,Engine_Block,1
+CAR100,TRN001,Transmission,1
+CAR100,BRK001,Brake_System,4
+CAR100,STR001,Steering_Assembly,1
+CAR100,WHE001,Wheel,4

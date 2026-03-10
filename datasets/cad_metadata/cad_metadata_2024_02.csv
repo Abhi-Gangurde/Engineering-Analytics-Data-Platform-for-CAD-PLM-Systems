@@ -1,0 +1,6 @@
+design_id,design_name,engineer,created_date,version,file_size_mb,component_count
+D1001,Engine_Block,John,2024-01-02,V1,120,45
+D1002,Transmission_Housing,Emma,2024-01-05,V1,98,38
+D1001,Engine_Block,John,2024-01-10,V2,125,47
+D1003,Brake_System,Arjun,2024-01-11,V1,65,25
+D1004,Steering_Assembly,Emma,2024-01-15,V1,80,30
