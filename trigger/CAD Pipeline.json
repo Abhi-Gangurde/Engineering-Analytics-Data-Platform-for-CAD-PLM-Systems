@@ -1,0 +1,17 @@
+{
+	"name": "CAD Pipeline",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/devcontainer/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/912e2517-4056-421f-871d-e4de28302924/resourceGroups/rg_pvr_databricks/providers/Microsoft.Storage/storageAccounts/abhistgac1",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
