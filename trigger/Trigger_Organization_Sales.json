@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_Organization_Sales",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "SQL_DWS_MEDALLION",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/devcontainer/blobs/",
+			"blobPathEndsWith": "csv",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/912e2517-4056-421f-871d-e4de28302924/resourceGroups/rg_pvr_databricks/providers/Microsoft.Storage/storageAccounts/abhistgac",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

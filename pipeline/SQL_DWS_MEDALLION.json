@@ -1,0 +1,215 @@
+{
+	"name": "SQL_DWS_MEDALLION",
+	"properties": {
+		"activities": [
+			{
+				"name": "LoadVolume",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.LoadVolume",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Bronze",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Validate_Volume",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.Bronze",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.Silver",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Gold",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Validate_Silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.Gold",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Validate_Volume",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "LoadVolume",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.Validate_LoadVolume",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Validate_Silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.Validate_Silver",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"LoadVolume": {
+				"type": "string",
+				"defaultValue": "/Users/srinivas.adf90@gmail.com/abhi/sql-data-warehouse-project/scripts/LoadVolume/LoadVolume"
+			},
+			"Bronze": {
+				"type": "string",
+				"defaultValue": "/Users/srinivas.adf90@gmail.com/abhi/sql-data-warehouse-project/scripts/bronze/Load_Bronze"
+			},
+			"Silver": {
+				"type": "string",
+				"defaultValue": "/Users/srinivas.adf90@gmail.com/abhi/sql-data-warehouse-project/scripts/silver/Silver_Orchestration"
+			},
+			"Gold": {
+				"type": "string",
+				"defaultValue": "/Users/srinivas.adf90@gmail.com/abhi/sql-data-warehouse-project/scripts/gold/Load_Gold"
+			},
+			"Validate_LoadVolume": {
+				"type": "string",
+				"defaultValue": "/Users/srinivas.adf90@gmail.com/abhi/sql-data-warehouse-project/scripts/LoadVolume/Validate_LoadVolume"
+			},
+			"Validate_Silver": {
+				"type": "string",
+				"defaultValue": "/Users/srinivas.adf90@gmail.com/abhi/sql-data-warehouse-project/scripts/silver/Validate_Silver_Orchestration"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-16T13:21:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

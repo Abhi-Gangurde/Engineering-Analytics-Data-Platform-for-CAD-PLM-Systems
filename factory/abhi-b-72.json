@@ -1,0 +1,9 @@
+{
+	"name": "abhi-b-72",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fa2b9207-945b-4257-9fd2-2dc64c320c2b",
+		"tenantId": "9d538480-0527-428f-907a-6b5e58a538bc"
+	}
+}

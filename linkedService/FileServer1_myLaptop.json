@@ -1,0 +1,17 @@
+{
+	"name": "FileServer1_myLaptop",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\DELL\\Documents\\Abhishek-Work\\DataEngineer\\DE_Projects\\CRM+Sales+Opportunities",
+			"userId": "abhigangurd",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlMTgzMjNkZi00YmU0LTRjYzEtOTJkNy1iNzVlZmE0NDA3ZmMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1-myLaptop",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

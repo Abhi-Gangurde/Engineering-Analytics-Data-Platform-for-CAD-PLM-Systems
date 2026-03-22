@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntime1-myLaptop",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
